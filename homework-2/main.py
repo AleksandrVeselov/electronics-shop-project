@@ -15,7 +15,7 @@ if __name__ == '__main__':
     i = Item.all
     for e in i:
         print(e.name)
-    assert len(Item.all) == 6  # в файле 5 записей с данными по товарам (может 6?)
+    assert len(Item.all) == 5  # в файле 5 записей с данными по товарам (может 6?)
 
     item1 = Item.all[0]
     assert item1.name == 'Смартфон'

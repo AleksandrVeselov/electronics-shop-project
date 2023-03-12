@@ -54,6 +54,7 @@ class Item:
     @classmethod
     def instantiate_from_csv(cls):
         """Загружает из файла .csv данные и создает на их основе экземпляры класса Item"""
+        cls.all = []
         with open('C:/Users/Aleksandr Veselov/electronics-shop-project/src/items.csv', 'r') as csv_file:
             rows = csv.DictReader(csv_file)
             for row in rows:
