@@ -1,3 +1,6 @@
+import csv
+
+
 class Item:
     """
     Класс для представления товара в магазине.
@@ -29,7 +32,10 @@ class Item:
         if len(new_name) <= 10:
             self.__name = new_name
         else:
-            raise Exception('Длина наименования товара превышает 10 символов.')
+            try:
+                raise Exception('Длина наименования товара превышает 10 символов.')
+            except Exception as e:
+                print(e)
 
     def calculate_total_price(self) -> float:
         """
@@ -45,3 +51,15 @@ class Item:
         """
         self.price *= Item.pay_rate
 
+    @classmethod
+    def instantiate_from_csv(cls):
+        """Загружает из файла .csv данные и создает на их основе экземпляры класса Item"""
+        with open('C:/Users/Aleksandr Veselov/electronics-shop-project/src/items.csv', 'r') as csv_file:
+            rows = csv.DictReader(csv_file)
+            for row in rows:
+                cls(row['name'], cls.string_to_number(row['price']), cls.string_to_number(row['quantity']))
+
+    @staticmethod
+    def string_to_number(str_number: str) -> int:
+        number = float(str_number)
+        return int(number)
