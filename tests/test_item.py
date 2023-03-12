@@ -10,6 +10,7 @@ def test_item():
 
 def test_item_init(test_item):
     """Это тест инициализатора класса"""
+
     assert test_item.name == 'Телевизор'
     assert test_item.price == 25000
     assert test_item.quantity == 10
