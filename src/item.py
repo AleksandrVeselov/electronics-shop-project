@@ -55,12 +55,13 @@ class Item:
     def instantiate_from_csv(cls):
         """Загружает из файла .csv данные и создает на их основе экземпляры класса Item"""
         cls.all = []
-        with open('C:/Users/Aleksandr Veselov/electronics-shop-project/src/items.csv', 'r') as csv_file:
+        with open('../src/items.csv', 'r') as csv_file:
             rows = csv.DictReader(csv_file)
             for row in rows:
                 cls(row['name'], cls.string_to_number(row['price']), cls.string_to_number(row['quantity']))
 
     @staticmethod
     def string_to_number(str_number: str) -> int:
+        """Метод для перевода строки в число"""
         number = float(str_number)
         return int(number)
