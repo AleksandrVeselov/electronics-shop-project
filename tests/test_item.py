@@ -10,6 +10,7 @@ def test_item():
 
 def test_item_init(test_item):
     """Это тест инициализатора класса"""
+
     assert test_item.name == 'Телевизор'
     assert test_item.price == 25000
     assert test_item.quantity == 10
@@ -28,3 +29,17 @@ def test_apply_discount(test_item):
     assert test_item.pay_rate == 0.5
     test_item.apply_discount()
     assert test_item.price == 12500
+
+
+def test_string_to_number(test_item):
+    """Тест метода string_to_number"""
+    assert test_item.string_to_number('21') == 21
+    assert test_item.string_to_number('21.5') == 21
+
+
+def test_instantiate_from_csv(test_item):
+    """Тест метода instantiate_from_csv"""
+    test_item.instantiate_from_csv()
+    assert len(item.Item.all) == 5
+
+
