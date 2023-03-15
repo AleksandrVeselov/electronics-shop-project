@@ -43,3 +43,13 @@ def test_instantiate_from_csv(test_item):
     assert len(item.Item.all) == 5
 
 
+def test_repr(test_item):
+    """тест метода __repr__"""
+    assert repr(test_item) == "Item('Телевизор', 25000, 10)"
+
+
+def test_str(test_item):
+    """тест метода __str__"""
+    assert test_item.__str__() == 'Телевизор'
+
+
