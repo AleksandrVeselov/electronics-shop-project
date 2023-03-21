@@ -71,3 +71,9 @@ class Item:
 
     def __str__(self):
         return self.__name
+
+    def __add__(self, other):
+        if isinstance(other, Item):
+            return self.quantity + other.quantity
+        else:
+            raise ValueError('Cложение возможно только с экземплярами класса Item и дочерними классами')
