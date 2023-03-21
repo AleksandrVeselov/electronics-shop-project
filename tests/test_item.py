@@ -7,6 +7,10 @@ from src import item
 def test_item():
     return item.Item('Телевизор', 25000, 10)
 
+@pytest.fixture()
+def test_item1():
+    return item.Item('Ноутбук', 85000, 2)
+
 
 def test_item_init(test_item):
     """Это тест инициализатора класса"""
@@ -51,5 +55,20 @@ def test_repr(test_item):
 def test_str(test_item):
     """тест метода __str__"""
     assert test_item.__str__() == 'Телевизор'
+
+
+def test_add(test_item, test_item1):
+    """Тест метода сложения"""
+    assert test_item + test_item1 == 12
+    assert test_item + 3 == 'Cложение возможно только с экземплярами класса Item и дочерними классами'
+
+
+def test_name_setter(test_item):
+    """Тест сеттера атрибута name"""
+    test_item.name = 'Новый_телевизор'
+    assert test_item.name == 'Телевизор'
+    test_item.name = 'Телик'
+    assert test_item.name == 'Телик'
+
 
 
