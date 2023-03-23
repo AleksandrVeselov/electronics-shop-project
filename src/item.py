@@ -55,7 +55,7 @@ class Item:
     def instantiate_from_csv(cls):
         """Загружает из файла .csv данные и создает на их основе экземпляры класса Item"""
         cls.all = []
-        with open('../src/items.csv', 'r') as csv_file:
+        with open('src/items.csv', 'r') as csv_file:
             rows = csv.DictReader(csv_file)
             for row in rows:
                 cls(row['name'], cls.string_to_number(row['price']), cls.string_to_number(row['quantity']))
@@ -71,3 +71,9 @@ class Item:
 
     def __str__(self):
         return self.__name
+
+    def __add__(self, other):
+        if isinstance(other, Item):
+            return self.quantity + other.quantity
+        else:
+            return 'Cложение возможно только с экземплярами класса Item и дочерними классами'
