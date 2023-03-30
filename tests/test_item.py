@@ -43,8 +43,18 @@ def test_string_to_number(test_item):
 
 def test_instantiate_from_csv(test_item):
     """Тест метода instantiate_from_csv"""
+
+    # Проверка нормальной работы метода
     test_item.instantiate_from_csv()
     assert len(item.Item.all) == 5
+
+    # Проверка работы метода при подаче в него несуществующего файла
+    with pytest.raises(FileNotFoundError) as e:
+        test_item.instantiate_from_csv('items.csv')
+
+    # Проверка работы метода при подаче в него некорректного csv файла
+    with pytest.raises(item.InstantiateCSVError) as e:
+        test_item.instantiate_from_csv('tests/test_items.csv')
 
 
 def test_repr(test_item):
@@ -69,6 +79,7 @@ def test_name_setter(test_item):
     assert test_item.name == 'Телевизор'
     test_item.name = 'Телик'
     assert test_item.name == 'Телик'
+
 
 
 
